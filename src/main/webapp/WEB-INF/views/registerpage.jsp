@@ -3,25 +3,60 @@
 <head>
     <title>David's Dark Roast - Registration</title>
 
-    //create validation function here and in form tag below, do return: call validation funtion (inside a script)
+    <script>
+        function validateForm() {
+            var a = document.forms["regform"]["firstname"].value;
+            var b = document.forms["regform"]["lastname"].value;
+            var c = document.forms["regform"]["num"].value;
+            var d = document.forms["regform"]["email"].value;
+            if (a === "") {
+                alert("A complete first name must be entered.");
+                return false;
+            } else if (b === "") {
+                alert("A complete last name must be entered.");
+                return false;
+            } else if (c <= 2999999999) {
+                alert("A valid area code & phone number must be enter.");
+                return false;
+            } else if (d === "" || !(d.includes('@')) || !(d.includes(".com"))) { //or doesn't contain an @
+                alert("A complete email address is needed. Make sure that you include an '@' symbol & '.com' at the end.");
+                return false;
+            }
+        }
 
+</script>
 </head>
+
 <body>
 ${inst}
 <br>
-<form action="formhandler" method="post">
+<form name="regform" action="formhandler" onsubmit="return validateForm()" method="post">
     <fieldset>
-        <legend> Coffee Lovew Registration </legend>
-    First Name: <input type="text" name="firstname"> <br>
-    Last Name: <input type="text" name="lastname"> <br>
-    Phone #: <input type="number" name="num"> <br>
+        <legend> Java Lover Registration </legend>
+    First Name: <input type="text" name="firstname" > <br>
+    Last Name: <input type="text" name="lastname" > <br>
+    Gender: <br>
+            <input type="radio" name="gender" value="Female" checked> Female <br>
+            <input type="radio" name="gender" value="Male"> Male <br>
+            <input type="radio" name="gender" value="Other"> Other <br>
+    Phone #: <input type="number" name="num" > <br>
     Email: <input type ="text" name="email"> <br>
-    Favorite type of coffee: <input type="text" name="favcoffee"> <br>
-
+    Favorite type of coffee:
+        <select name="javaselect">
+        <option value="cappucino">Cappucino</option>
+        <option value="cafe americano">Cafe Americano</option>
+        <option value="cafe mocha">Cafe Mocha</option>
+        <option value="latte">Latte</option>
+        <option value="cafe macchiato">Cappucino</option>
+        <option value="espresso">Espresso</option>
+        <option value="iced coffee">Iced Coffee</option>
+        <option value="frappe">Frappe</option>
+        <option value="black">Black</option>
+        <option value="none">None</option>
+        </select>
+        <br>
     <input type="submit" name="submit" value="Submit">
-
     </fieldset>
-
 </form>
 </body>
 </html>
